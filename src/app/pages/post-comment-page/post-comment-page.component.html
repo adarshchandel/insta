@@ -1,0 +1,105 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="ball-circus" [fullScreen]="true">
+</ngx-spinner>
+<app-navbar></app-navbar>
+<div class="container app">
+  <div class="row post">
+    <div class="col-sm-6 p-1">
+      <img class="post_image" src="{{ imgUrl }}{{ postData.image }}" loading="lazy" (dblclick)="likePost(postData)" />
+    </div>
+    <div class="col-sm-6 p-0">
+      <div class="post_header">
+        <img src="{{ imgUrl }}{{ postData.postedBy?.profilePic }}" [routerLink]="['/profile/' + postData.postedBy?._id]"
+          alt="Avatar" class="avatar" src="" />
+        <h6 class="userName goto mt-1" [routerLink]="['/profile/' + postData.postedBy?._id]">
+          <b>{{ postData.postedBy?.userName }}</b>
+        </h6>
+      </div>
+      <div class="comment-list p-3">
+        <div class="comment" *ngFor="let comments of commentsList">
+          <div class="row p-2 mt-1 mb-1">
+            <div class="col-sm-12">
+              <img src="{{ imgUrl }}{{ comments.commentedBy.profilePic }}" class="cmnt-avatar" />
+              <span class="cmnt text-center">
+                {{ comments.commentedBy.userName }}
+              </span>
+              <span class="ml-2">
+                {{ comments.comment }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comment-input row p-0">
+        <div class="col-sm-11">
+          <input type="text" class="cus-input" [(ngModel)]="addComment" placeholder="write here" />
+          <span class="post-btn" *ngIf="addComment" (click)="submit()">post</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="captionSection" *ngIf="postData.caption">
+        <h6 class="post_text">
+          <b>{{ postData.postedBy?.userName }}</b> {{ postData?.caption }}
+        </h6>
+      </div>
+      <form [formGroup]="addComment">
+        <div class="commentSection">
+          <textarea
+            type="text"
+            formControlName="comment"
+            class="commmentInput"
+            placeholder="Add a comment..."
+            name="caption"
+          ></textarea>
+          <h6 class="postComment" (click)="submit()">
+            <button
+              [disabled]="!addComment.value.comment"
+              type="submit"
+            >
+              Post
+            </button>
+          </h6>
+        </div>
+      </form> -->
+  </div>
+</div>
+
+<!-- <div class="post_header">
+  <img
+    src="{{ imgUrl }}{{ postData.postedBy?.profilePic}}"
+    [routerLink]="['/profile/' + postData.postedBy?._id]"
+    alt="Avatar"
+    class="avatar"
+    src=""
+  />
+  <h6
+    class="userName goto mt-1"
+    [routerLink]="['/profile/' + postData.postedBy?._id]"
+  >
+    <b>{{ postData.postedBy?.userName }}</b>
+  </h6>
+</div>
+
+<span class="actions">
+  <span class="likes">
+    <strong>{{ postData.likes?.length }} </strong>
+    <i
+      *ngIf="!postData.likes?.includes(loggedInUserId)"
+      class="fa fa-heart"
+      style="font-size: 16px; cursor: pointer"
+      (click)="likePost(postData)"
+    ></i>
+    <i
+      *ngIf="postData.likes?.includes(loggedInUserId)"
+      class="fa fa-heart"
+      style="font-size: 16px; cursor: pointer; color: red"
+      (click)="likePost(posts, i)"
+    ></i>
+  </span>
+  &nbsp;
+  <span class='dislikes'>
+           <b>{{posts.disLikes.length}} </b>
+           <i *ngIf='!posts.disLikes.includes(loggedInUserId)' class="fa fa-thumbs-down" style="font-size:24px ;cursor: pointer;" (click)='dislikePost(posts)'></i>
+           <i *ngIf='posts.disLikes.includes(loggedInUserId)' class="fa fa-thumbs-down" style="font-size:24px ;cursor: pointer; color:rgb(14, 110, 167)" (click)='dislikePost(posts)'></i>
+          </span>
+</span> -->

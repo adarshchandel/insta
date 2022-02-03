@@ -1,0 +1,70 @@
+.login_card{
+    padding:20px;
+    text-align: center;
+    max-width: 500px;
+    margin: 10px auto;
+    border:1px solid rgb(204, 200, 200)
+    // box-shadow: 2px 1px 5px 0px gray;
+    
+}
+input{
+    display: flex;
+    width:100%;
+    outline: none;
+    padding: 10px;
+    border:none;
+    border-bottom: 2px solid lightgray;
+}
+// input:hover{
+//     border-bottom: 2px solid skyblue;
+// }
+button{
+    margin-top: 10px;
+    padding-right: 66px;
+    padding-left: 66px;
+}
+span{
+    cursor: pointer;
+    color:rgb(46, 148, 189)
+}
+h1{
+    font-family: 'Grand Hotel',cursive;
+    font-size:45px
+}
+.invalid{
+    color:red;
+}
+.myCard{
+    background-color: white;
+    position: relative;
+    top: 114px;
+}
+.signupGo{
+    padding-top: 10px;
+    text-align: center;
+    max-width: 500px;
+    margin: 10px auto;
+    border: 1px solid #ccc8c8;
+    position: relative;
+    top: 120px;
+}
+
+.facebookLogin{
+    padding-top: 20px;
+}
+
+.inputPassword{
+    display: flex;
+}
+.showPass {
+    position: absolute;
+    right: 36px;
+    top: 48%;
+}
+.OR{
+    text-decoration: none;
+    color: #001081;
+    cursor: pointer;
+}
+
+

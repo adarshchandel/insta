@@ -1,0 +1,46 @@
+.login_card{
+    padding:20px;
+    text-align: center;
+    max-width: 500px;
+    margin: 10px auto;
+    box-shadow: 2px 1px 5px 0px gray;
+    
+}
+input{
+    display: flex;
+    width:100%;
+    outline: none;
+    padding: 10px;
+    border:none;
+    border-bottom: 2px solid lightgray;
+}
+input:hover{
+    border-bottom: 2px solid skyblue;
+}
+button{
+    margin-top: 10px;
+}
+span{
+    cursor: pointer;
+    color:rgb(46, 148, 189)
+}
+h2{
+    font-family: 'Grand Hotel',cursive;
+}
+.imgPreview{
+    margin-right:350px ;
+}
+
+.cus-preview{
+    height:100px;
+    width:100px;
+    border-radius: 50%;
+}
+.cropper { 
+    max-width : 357px;
+    min-width : 357px;
+    max-height : 280px;
+    min-height : 280px;
+    }
+
+

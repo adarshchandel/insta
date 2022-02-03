@@ -1,0 +1,42 @@
+.signup_card{
+    padding:20px;
+    text-align: center;
+    max-width: 500px;
+    margin: 10px auto;
+    border:1px solid rgb(204, 200, 200)
+
+    
+}
+input{
+    display: flex;
+    width:100%;
+    outline: none;
+    padding: 10px;
+    border:none;
+    border-bottom: 2px solid lightgray;
+}
+input:hover{
+    border-bottom: 2px solid skyblue;
+}
+button{
+    margin-top: 10px;
+}
+span{
+    cursor: pointer;
+    color:rgb(46, 148, 189)
+}
+h2{
+    font-family: 'Grand Hotel', cursive;
+
+}
+.invalid{
+    color:red;
+}
+.imgPreview{
+    margin-right:350px ;
+}
+.myCard {
+    position: relative;
+    top: 132px;
+}
+

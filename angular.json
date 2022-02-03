@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "e2647009-fe47-4600-a590-022802ea7f67"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -17,6 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["lodash"],
             "outputPath": "dist/n",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,7 +32,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

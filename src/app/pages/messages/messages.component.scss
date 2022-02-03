@@ -1,0 +1,71 @@
+.all_chats {
+  border: 1px solid lightgray;
+  height: 643px;
+  margin: 20px 0 20px 0px;
+}
+
+.myUser {
+  border-bottom: 1px solid lightgray;
+  padding: 15px 0 15px 0;
+}
+.my-chats {
+  height: 586px;
+  overflow: auto;
+}
+
+.my-chats ul {
+  list-style: none;
+  padding: 15px 0 0 15px;
+}
+.chat_window {
+  margin: 20px 0px 20px 0px;
+  border: 1px solid lightgray;
+  height: 643px;
+}
+.messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input_msg {
+  border-radius: 10px;
+  border-radius: 13px;
+  height: 38px;
+  outline: none;
+  border: 1px solid lightgray;
+  padding: 0 56px 0 17px;
+}
+
+.send_btn {
+  position: absolute;
+  color: #0095f6;
+  right: 7%;
+  margin-top: 7px;
+  font-weight: 600;
+}
+.chat_user {
+  height: 54px;
+  padding: 15px 0 0 22px;
+  border-bottom: 1px solid lightgray;
+  font-weight: 600;
+}
+.messages_cus {
+  height: 525px;
+  position: relative;
+  overflow: auto;
+}
+
+.send_box {
+  position: relative;
+  top: 2%;
+}
+.ideal_msg_wndow {
+  position: relative;
+  top: 280px;
+  text-align: center;
+}
+.new{
+  color:red;
+  background-color: black;
+}

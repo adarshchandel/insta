@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+*{
+    margin:0;
+    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
+}
+
+    .modal-content{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 148%;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: .3rem;
+        outline: 0;
+        right: 98px;
+        
+    }

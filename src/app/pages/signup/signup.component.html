@@ -1,0 +1,44 @@
+
+<app-navbar></app-navbar>
+<div class='myCard'>
+    <div class="card signup_card">
+        <div class="card-body">
+            <h2>Instagram Signup</h2>
+            <form #signupForm='ngForm' (ngSubmit)='signupForm.form.valid'>
+                <input type='text' placeholder="enter username..." name='name' [(ngModel)]='signup.name'>
+                <div>
+                    <input type='text' placeholder="enter email..." name='email' [(ngModel)]='signup.email'
+                        #email='ngModel' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        [ngClass]='{"is-invalid":signupForm.submitted && email.invalid}'>
+                    <div class='invalid-feedback'>
+                        <span *ngIf='signupForm.submitted && email.invalid'>
+                            <span *ngIf='email.errors?.pattern' class='invalid'>invalid email</span>
+
+                        </span>
+
+                    </div>
+                    <input type='number' placeholder="enter number..." name='number' [(ngModel)]='signup.number'
+                        #number='ngModel' 
+                        [ngClass]='{"is-invalid":signupForm.submitted && number.invalid}'>
+                    <div class='invalid-feedback'>
+                        <span *ngIf='signupForm.submitted && number.invalid'>
+                            <span *ngIf='number.errors?.pattern' class='invalid'>invalid number</span>
+
+                        </span>
+
+                    </div>
+                </div>
+                <input type='password' placeholder='enter password...' name='password' [(ngModel)]='signup.password'>
+                <div class='images'>
+                    <input type="file" id='image' name="image"  class='form-control' (change)="imageUpload($event)">
+                    <img *ngIf='!imgUrl'  class='imgPreview' src='assets\default-user.jpg'  style='height:80px; width:80px; border-radius: 40px;'>
+                    <img *ngIf='imgUrl' class='imgPreview' [src]='imgUrl' style='height:80px; width:80px; border-radius: 40px;' alt='profile picture'>
+                </div>
+                <button type='submit' class='btn btn-primary' (click)='submitSignup()'>{{flags.isSignup ? "wait..." : "signup" }}</button>
+            </form>
+        </div>
+        <h5>Already have an account? <span routerLink='/login'>login</span> </h5>
+
+    </div>
+
+</div>

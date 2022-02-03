@@ -1,0 +1,165 @@
+<app-navbar></app-navbar>
+
+<div style="max-width: 600px; margin: 0px auto">
+  <div
+    style="
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0px 50px;
+      border-bottom: 1px solid lightgray;
+    "
+  >
+    <div class="mb-4">
+      <img
+        style="width: 140px; height: 140px; border-radius: 70px"
+        src="{{ imgUrl }}{{ user.profilePic }}"
+      />
+    </div>
+
+    <div>
+      <div class="mt-2 mb-3 row">
+        <div class="col-sm-6">
+          <h4>{{ user.userName }}</h4>
+        </div>
+`        <div class="col-sm-6">
+          <button
+            *ngIf="userID != profileUserId && !user.followers?.includes(userID)"
+            class="btn btn-follow"
+            (click)="followUser()"
+          >
+            Follow
+          </button>
+          <button
+            *ngIf="userID != profileUserId && user.followers?.includes(userID)"
+            class="btn btn-follow"
+            (click)="unfollowUser()"
+          >
+            Unfollow
+          </button>
+          <button
+            *ngIf="userID == profileUserId"
+            class="btn btn-edit"
+            [routerLink]="['/update-profile/' + user._id]"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; width: 108%">
+        <h6>
+          <span>
+            <strong class="ml-2">{{ length }}</strong> posts
+          </span>
+        </h6>
+        <h6>
+          <span>
+            <strong class="ml-2">{{ user.followers?.length }}</strong> followers
+          </span>
+        </h6>
+        <h6>
+          <span>
+            <strong class="ml-2">{{ user.following?.length }}</strong> following
+          </span>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <h1>POSTS</h1> -->
+<div class="container">
+  <div class="userPosts mb-5 text-center" >
+    <div class="row">
+      
+        <div *ngFor="let post of posts" class="col-sm-4" >
+          <img
+            class="posts"
+            src="{{ imgUrl }}{{ post.image }}"
+            (click)="getPostData(post._id)"
+            loading="lazy"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          />
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade cus_modal"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-dialog-centered"
+    style="z-index: 1"
+    role="document">
+    <div class="modal-content">
+      <div type="button" class="text-right col-sm-12">
+        <div
+          aria-hidden="true"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          style="color: blanchedalmond"
+        >
+          <strong>X</strong>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <img
+              src="{{ imgUrl }}{{ postData.image }}"
+              style="width: 400px; height: 400px"
+            />
+          </div>
+          <div class="col-sm-5">
+            <div class="post_header">
+              <img
+                class="avatar"
+                src="{{ imgUrl + postData.postedBy?.profilePic }}"
+              />
+              <span>
+                <strong style="margin-left: 10px">{{
+                  postData.postedBy?.userName
+                }}</strong>
+                <div class="post_caption">
+                  {{ postData.caption }}
+                </div>
+              </span>
+
+              <span
+                class="test"
+                data-dismiss="modal"
+                aria-label="Close"
+                (click)="deletePost(postData._id)"
+              >
+                <i class="fa fa-trash-o" style="font-size: 24px"></i>
+              </span>
+            </div>
+            <div class='post_cmnts'>
+              <div class='row' *ngFor='let comments of commentsList'>
+                <div class='col-sm-3'>
+                <img class='avatar' src='{{imgUrl}}{{comments.commentedBy.profilePic}}'>  
+                </div>
+                <div class='col-sm-3'>
+                  {{comments.commentedBy.userName}}
+                </div>
+                <p class='col-sm-6'>
+                  {{comments.comment}}
+
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

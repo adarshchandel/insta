@@ -1,0 +1,91 @@
+<app-navbar></app-navbar>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="large"
+  color="#fff"
+  type="ball-circus"
+  [fullScreen]="true"
+>
+</ngx-spinner>
+<section>
+  <div class="container">
+    <div class="row messages">
+      <div class="col-sm-4">
+        <div class="all_chats">
+          <div class="myUser text-center">
+            <b>{{ myUser.userName }}</b>
+          </div>
+          <div class="message-window">
+            <div class="my-chats">
+              <ul *ngFor="let users of userList">
+                <li
+                  *ngIf="users._id != userId"
+                  (click)="getChatUser(users._id)"
+                  class="users"
+                  style="cursor: pointer">
+                  <img
+                    src="{{ imgUrl + users.profilePic }}"
+                    style="
+                      height: 56px;
+                      width: 56px;
+                      border-radius: 100%;
+                      margin-right: 10px;
+                      cursor: pointer;
+                    "
+                  />{{ users.userName | titlecase }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="chat_window">
+          <div class="row">
+            <div class="message_wndow">
+              <!-- <div class='ideal_msg_wndow' *ngIf='!this.user'>
+                                
+                                <h5>Your Messages</h5>
+                                <p> Send private photos and messages to a friends.</p>
+                            </div> -->
+              <div class="messages_box" class="col-sm-12" *ngIf="user">
+                <div class="chat_user">
+                  <img
+                    src="{{ imgUrl + user.profilePic }}"
+                    style="
+                      height: 30px;
+                      width: 30px;
+                      border-radius: 50%;
+                      margin-right: 5px;
+                    "
+                  />
+                  <span style="cursor: pointer">
+                    {{ user?.userName }}
+                  </span>
+                </div>
+                <div class="messages_cus">
+                  <ul id="message-list"></ul>
+                </div>
+                <div class="send_box text-center">
+                  <input
+                    type="text"
+                    [(ngModel)]="message"
+                    class="col-sm-11 input_msg"
+                    placeholder="Message..."
+                  />
+                  <span
+                    type="submit"
+                    (click)="SendMessage()"
+                    *ngIf="message"
+                    class="send_btn"
+                    >Send</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

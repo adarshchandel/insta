@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+
+
+
+<div class='myCard'>
+    <div class="card login_card">
+        <div class="card-body">
+            <h1>Instagram</h1>
+            <form #loginForm='ngForm' (ngSubmit)='loginForm.form.valid'>
+                <div>
+                    <input type='text' placeholder="enter email..." name='email' [(ngModel)]='login.email'
+                        #email='ngModel' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        [ngClass]='{"is-invalid":loginForm.submitted && email.invalid}'  >
+                    <div class='invalid-feedback'>
+                        <span *ngIf='loginForm.submitted && email.invalid'>
+                            <span *ngIf='email.errors?.pattern' class='invalid'>invalid email</span>
+
+                        </span>
+                    </div>
+                </div>
+                <div class='inputPassword'>
+                    <input [type]="fieldTextType ? 'text' : 'password'" placeholder='enter password...' name='password' [(ngModel)]='login.password'>
+                    <span *ngIf='login.password' class="showPass" style='color:black' (click)='showPassword()'  ><strong>{{ Show ?'Show':'Hide' }}</strong></span>
+                </div>
+                <button class='btn btn-primary mt-3' [disabled]='!login.email || !login.password || login.password.length <=4 ' (click)='submitLogin()' >{{flags.isLogIn ? "wait...":"login"}}</button>
+
+            </form>
+            <div class="row">
+               <a class="col-sm-12 mt-4 OR" [routerLink]='["/forget-password"]'>Forgot Password ?</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class='card signupGo'>
+    <div class='card-body'>
+        <h5>Don't have an account? <span routerLink='/signup'>Signup</span> </h5>
+
+    </div>
+</div>
