@@ -17,15 +17,19 @@
       <div class="comment-list p-3">
         <div class="comment" *ngFor="let comments of commentsList">
           <div class="row p-2 mt-1 mb-1">
-            <div class="col-sm-12">
-              <img src="{{ imgUrl }}{{ comments.commentedBy.profilePic }}" class="cmnt-avatar" />
-              <span class="cmnt text-center">
-                {{ comments.commentedBy.userName }}
-              </span>
-              <span class="ml-2">
-                {{ comments.comment }}
-              </span>
-            </div>
+            <!-- <div class="col-sm-12"> -->
+              <div class="col-sm-1">
+                <img src="{{ imgUrl }}{{ comments.commentedBy.profilePic }}" class="cmnt-avatar" />
+
+              </div>
+              <div class="cmnt text-center col-sm-2 text-left">
+                <p style="word-break:break-all">{{ comments.commentedBy.userName }}</p>
+              </div>
+              <div class="ml-2 col-sm-9">
+                <p style="word-break:break-all">{{ comments.comment }}</p>
+
+              </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>

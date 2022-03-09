@@ -22,6 +22,7 @@ export class SocketService implements OnInit {
 
 
 
+
   setConnection(user: any) {
     this.socket = io(environment.baseUrl)
     this.socket.emit('connection')
@@ -32,15 +33,53 @@ export class SocketService implements OnInit {
     this.socket.emit('message', data)
   }
 
-  getMessage():Observable<any> {
-    return new Observable<any>((observer)=>{
-      this.socket.on('send-message', (message)=>observer.next(message))
+  getMessage(): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.socket.on('send-message', (message) => observer.next(message))
     })
   }
 
-  disconnect() {
+  userTyping(data: any) {
+    this.socket.emit('typing', data)
+  }
+  getUserTyping(): Observable<any> {
+    return new Observable<any>((observer) => {
+      this.socket.on('showTyping', (typing) => observer.next(typing))
+
+    })
+  }
+
+  notifyUser(data) {
+    this.socket.emit('setNotify', data)
+  }
+  getNotification(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('getNotify', (notify) => observer.next(notify))
+    })
+  }
+
+  outgoingVoiceCall(data) {
+    this.socket.emit('videoCall', data)
+  }
+  
+  incomingVoiceCall(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('incomingCall', (call) => observer.next(call))
+    })
+  }
+
+  // userList():Observable<any>{
+  //   return new Observable((observer)=>{
+  //     this.socket.on('userList',(users)=> observer.next(users))
+  //   })
+  // }
+
+
+  disconnect(id) {
     if (this.socket) {
+      this.socket.emit('userGone' , { id : id})
       this.socket.disconnect();
+
     }
   }
 

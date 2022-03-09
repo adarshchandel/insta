@@ -75,9 +75,9 @@ export class ApiService {
   //     "Authorization": "Bearer "+localStorage.getItem("token")});
   //     return this.http.get(this.baseUrl+'post/userPosts/'+data)
   // }
-  getallPosts(){
+  getallPosts(data){
     const headers = new HttpHeaders();
-    return this.http.get(this.baseUrl+'post/allPosts',{headers:headers});
+    return this.http.post(this.baseUrl+'post/allPosts',data,{headers:headers});
   }
 
   getOnepost(data){
@@ -102,9 +102,9 @@ export class ApiService {
     })
     return this.http.put(this.baseUrl+'post/addDisLike',data,{headers:headers})
   }
-  MyfrindsList(){
+  MyfrindsList(id){
     const headers =new HttpHeaders();
-    return this.http.get(this.baseUrl+'user/myUserList',{headers:headers})
+    return this.http.get(this.baseUrl+'user/myUserList/'+id,{headers:headers})
   }
   forgetPassword(data:any){
     const headers = new HttpHeaders();
@@ -136,6 +136,11 @@ export class ApiService {
       "Authorization" : "Bearer "+localStorage.getItem("token")
     })
     return this.http.post(this.baseUrl+'post/commentsList',data,{headers:headers})
+  }
+
+  getConvo(data){
+    const headers = new HttpHeaders()
+    return this.http.post(this.baseUrl+'message/convo',data,{headers:headers})
   }
 }
 

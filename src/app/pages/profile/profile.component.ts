@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
   checkUser(){
     this.userID=localStorage.getItem("userId")
     if(this.userID){
-      this.getUserPosts()
+      
     this.getUser()
     }else{
       this.router.navigate([''])
@@ -75,6 +75,9 @@ export class ProfileComponent implements OnInit {
     }
     this.api.getUserById(data).subscribe((res: any) => {
       this.user = res.data
+      if(  (this.profileUserId == this.userID) || this.user.followers.includes(this.userID)){
+        this.getUserPosts()
+      }
       // console.log("user=====",this.user)
     })
   }

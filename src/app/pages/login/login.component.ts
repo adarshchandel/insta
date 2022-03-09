@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
         if (res.success == true) {
           localStorage.setItem("token", res.data[0].token);
           localStorage.setItem("userId", res.data[0]._id)
+          localStorage.setItem('userData', JSON.stringify(res.data[0].userData))
           this.toastr.success('User logged in')
           this.router.navigate(['/feed'])
           this.spinner.hide()

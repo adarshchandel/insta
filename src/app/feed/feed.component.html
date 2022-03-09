@@ -13,7 +13,8 @@
     <h3>Create posts or follow user to see posts</h3>
   </div>
   <div class="app_posts" *ngIf="isPosts">
-    <div class="post" *ngFor="let posts of allPosts; let i = index">
+    <div class="post" *ngFor="let posts of allPosts; let i = index" (scrolled)="onScroll()" infinite-scroll
+    [infiniteScrollDistance]="scrollDistance"  [infiniteScrollThrottle]="throttle">
       <div class="post_header">
         <img
           src="{{ imgUrl }}{{ posts.postedBy.profilePic }}"

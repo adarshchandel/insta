@@ -17,6 +17,7 @@ export class PostCommentPageComponent implements OnInit {
   commentsList:any;
   imgUrl = 'http://localhost:8000/static/';
   addComment:any
+  userData: any;
   constructor(
     private api: ApiService,
     private route :ActivatedRoute,
@@ -30,6 +31,7 @@ export class PostCommentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInUserId= localStorage.getItem('userId')
+     this.userData =  JSON.parse(localStorage.getItem('userData')) 
     this.route.params.subscribe((res)=>{
       this.postId=res.id
     })
@@ -95,8 +97,16 @@ export class PostCommentPageComponent implements OnInit {
     }
     this.api.commentOnPost(data).subscribe((res)=>{
       if(res['success']=true){
+        let data = {
+           comment : this.addComment,
+           commentedBy :{
+            id : this.loggedInUserId,
+            profilePic : this.userData.profilePic,
+            userName : this.userData.userName
+           }
+        }
+        this.commentsList.unshift(data)
         this.addComment=''
-        this.commentList()
       }
     })
   }

@@ -14,13 +14,13 @@ allPosts:any;
 
   ngOnInit(): void {
   }
-  getPosts(){
-    this.api.getallPosts().subscribe((res)=>{
+  // getPosts(){
+  //   this.api.getallPosts().subscribe((res)=>{
       
-      this.allPosts =res['data']
-      console.log(this.allPosts)
-    })
-  }
+  //     this.allPosts =res['data']
+  //     console.log(this.allPosts)
+  //   })
+  // }
   
 
 }

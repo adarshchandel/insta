@@ -25,7 +25,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import {ReactiveFormsModule} from '@angular/forms'
 import {AdminGuard} from './admin.guard';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { PostCommentPageComponent } from './pages/post-comment-page/post-comment-page.component'
+import { PostCommentPageComponent } from './pages/post-comment-page/post-comment-page.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import { PostCommentPageComponent } from './pages/post-comment-page/post-comment
     RouterModule,
     NgxSpinnerModule,
     ImageCropperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule
     
     
     

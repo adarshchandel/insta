@@ -7,7 +7,6 @@ import {SocketService} from '../socket.service'
 import  {io} from 'socket.io-client'
 import {FormBuilder,FormGroup, Validators } from '@angular/forms'
 // import {MatSnackBar} from '@angular/material/snack-bar';
-const SOCKET_ENDPOINT = io('http://localhost:8000/');
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -33,6 +32,10 @@ export class FeedComponent implements OnInit {
   random:any
   OTPlen=6
   socket
+  page: any=1;
+  scrollUpDistance = 1000
+  scrollDistance =1000
+  throttle = 1000;
   constructor(
     private api: ApiService,
     private route:ActivatedRoute,
@@ -48,8 +51,9 @@ export class FeedComponent implements OnInit {
     this.loggedInUserId= localStorage.getItem('userId')
     this.route.params.subscribe((res)=>{
       this.userId=res.id
+      
     })
-
+    this.socketService
     this.addComment=this.fb.group({
       comment:['',Validators.required]
     })
@@ -57,7 +61,7 @@ export class FeedComponent implements OnInit {
     this.isUser = localStorage.getItem('token')
     this.currentUserId=localStorage.getItem('userId')
     this.checkUser()
-    this.setupSocketConnection()
+   
   }
 
   passIndex(i){
@@ -69,6 +73,7 @@ export class FeedComponent implements OnInit {
   checkUser() {
     if (this.isUser) {
       this.getPosts()
+      window.scroll(0,0)
       // this.getUser()
     } else {
       this.router.navigate([''])
@@ -77,7 +82,7 @@ export class FeedComponent implements OnInit {
 
   getPosts() {
     this.spineer.show()
-    this.api.getallPosts().subscribe((res) => {
+    this.api.getallPosts({ page : this.page , count :5 }).subscribe((res) => {
       if(res['success']==true){
         this.allPosts = res['data']
         this.isPosts=this.allPosts.length  
@@ -87,10 +92,6 @@ export class FeedComponent implements OnInit {
         this.spineer.hide()
       }
     })
-  }
-
-  setupSocketConnection() {
-    this.socket = SOCKET_ENDPOINT;
   }
 
 
@@ -105,20 +106,17 @@ export class FeedComponent implements OnInit {
     this.api.likePost(data).subscribe((res)=>{
       if(res['success']==true){
         this.spineer.hide()
-        // this.snack.open(res['data'])
-        // this.toastr.success(res["data"])
-        // this.getPosts()
-        this.getPostDetails(post._id,i)
-        let socketData = {
+      
+        // this.getPostDetails(post._id,i)
+
+
+        //emit notification
+        let notificationData = {
           likedBy:this.currentUserId,
-          data:'Your post liked',
+          data:'liked your post',
           userPost:post.postedBy._id
         }
-        this.socket.emit('getNotify' , socketData)
-        // this.socketService.notification(socketData).subscribe((res)=>{
-        //   alert(res['data'])
-        //   console.log(res['data'])
-        // })
+        this.socketService.notifyUser(notificationData)
       }if(res['success']==false){
         this.toastr.warning(res['dat-a'])
         this.getPosts()
@@ -136,7 +134,7 @@ export class FeedComponent implements OnInit {
       if(res['success']==true){
         this.spineer.hide()
         this.toastr.success(res['data'])
-        this.getPostDetails(post._id,i)
+        // this.getPostDetails(post._id,i)
         // this.getPosts()
       }if(res['success']==false){
         this.spineer.hide()
@@ -146,17 +144,17 @@ export class FeedComponent implements OnInit {
     })
   }
 
-  getPostDetails(id,i){
-    let data={
-      postId:id
-    }
-    this.api.getOnepost(data).subscribe((res)=>{
-     if(res['success']==true){
-      this.allPosts[i] =res['data']
-       this.userPost= res['data'].postedBy._id
-     }
-    })
-  }
+  // getPostDetails(id,i){
+  //   let data={
+  //     postId:id
+  //   }
+  //   this.api.getOnepost(data).subscribe((res)=>{
+  //    if(res['success']==true){
+  //     this.allPosts[i] =res['data']
+  //      this.userPost= res['data'].postedBy._id
+  //    }
+  //   })
+  // }
   submit(id){
     let data={
       postId:id,
@@ -168,6 +166,11 @@ export class FeedComponent implements OnInit {
         this.addComment.reset()
       }
     })
+  }
+  onScroll(){
+    console.log('hey')
+    this.page++
+    this.getPosts()
   }
 
 }
