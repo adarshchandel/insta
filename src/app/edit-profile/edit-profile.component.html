@@ -1,0 +1,83 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="ball-circus" [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+<app-navbar></app-navbar>
+<div class="myCard">
+    <div class="card signup_card">
+        <div class="card-body">
+            <h2>Instagram Profile</h2>
+            <form [formGroup]="profileForm" (ngSubmit)="submit()">
+                <div>
+                    <input type="text" placeholder="username..." name="name" formControlName="userName" />
+                    <div *ngIf="submitted">
+                        <span *ngIf="status.userName.errors?.required" class="invlid-class">invalid name</span>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" placeholder="email..." name="email" formControlName="email" />
+                    <div *ngIf="submitted">
+                        <span *ngIf="submitted && status.email.errors?.required" class="invlid-class">email is
+                            required</span>
+                        <span *ngIf="submitted && status.email.errors?.pattern" class="invlid-class">invalid
+                            email</span>
+                    </div>
+                </div>
+                <div class="images">
+                    <input type="file" id="image" name="image" class="form-control" (change)="imageUpload($event)" />
+                    <span data-toggle="modal" data-target="#exampleModal" id="open-dialog"></span>
+
+                    <img *ngIf="croppedImage" class="imgPreview" [src]="croppedImage"
+                        style="height: 80px; width: 80px; border-radius: 40px" />
+                    <span *ngIf="!croppedImage">
+                        <img *ngIf="profilePic" class="imgPreview" src="{{ imgUrl + profilePic }}"
+                            style="height: 80px; width: 80px; border-radius: 40px" alt="profile picture" />
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    {{ flags.isSignup ? "wait..." : "Update" }}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit profile image</h5>
+                <button class="close" style="
+            background-color: #e3e1e1;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+          " data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class='col-sm-12 text-center'>
+                        <div #cropContainer style="display: block;   height: 500px; z-index: 1">
+                            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                            [roundCropper]='true'
+                                [aspectRatio]="4 / 4" [resizeToWidth]="800" [resizeToHeight]="600" [cropperMaxWidth]="2500"
+                                [cropperMaxHeight]="2500" [cropperMinWidth]="2499" [cropperMinHeight]="2499" format="png"
+                                (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                                [hideResizeSquares]='true'
+                                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

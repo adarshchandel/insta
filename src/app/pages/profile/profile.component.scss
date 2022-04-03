@@ -1,0 +1,97 @@
+.userPosts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding:10px
+}
+.posts {
+  // width:30%;
+  margin: 14px 0 4px 0;
+  height: 220px;
+  width: 210px;
+}
+
+.btn-follow {
+  height: 32px;
+  padding: 3px 27px 14px 27px;
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.btn-edit {
+  height: 32px;
+  padding: 3px 27px 14px 27px;
+  color: #161616;
+  background-color: #ffffff;
+  border: 1px solid #1e1e1f;
+  display: flex;
+  font-weight: 600;
+}
+
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  width: 815px;
+  padding: 1rem;
+}
+
+
+
+.post_header {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 9px;
+  margin-top: -12px;
+}
+.avatar {
+  padding: 2px;
+  margin-left: 11px;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.post_caption {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.close {
+  position: absolute;
+  top: -5%;
+  right: 0;
+}
+.test {
+  // content: '\2807';
+  // font-size: 25px;
+  margin-left: 130px;
+}
+
+.post_cmnts{
+  height: 347px;
+  overflow-x: auto;
+}
+
+@media only screen and (max-width: 500px){
+  .cus_modal{
+    width:400px
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .cus_modal{
+    width:600px
+  }
+}
+@media only screen and (max-width: 900px){
+  .cus_modal{
+    width:800px
+  }
+}
+@media only screen and (max-width: 1200px){
+  .cus_modal{
+    width:1000px
+  }
+}

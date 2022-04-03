@@ -1,0 +1,33 @@
+
+.loggedOut{
+    display: flex;
+    position: absolute;
+    top:5%;
+    left: 30%;
+    width:50%
+}
+.loginPrompt{
+    margin-left:10px;
+    position: relative;
+    top:50px;
+    border:1px solid rgb(204, 200, 200);
+    border-radius: 5px;
+    height:300px;
+    width: 250px;
+    padding-top:20px;
+    cursor:pointer
+}
+@media only screen and (max-width:768px){
+    .instaImage{
+        display: none;
+
+    }
+}
+.Image{
+    height:500px;
+    width:400px;
+    border-radius: 20px;
+}
+
+
+

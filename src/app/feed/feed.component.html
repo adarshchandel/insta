@@ -1,0 +1,88 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="large"
+  color="#fff"
+  type="ball-circus"
+  [fullScreen]="true"
+>
+  <p style="color: white">Something is comming up</p>
+</ngx-spinner>
+<div class="app">
+  <app-navbar></app-navbar>
+  <div *ngIf="!isPosts" class="text-center mt-3">
+    <h3>Create posts or follow user to see posts</h3>
+  </div>
+  <div class="app_posts" *ngIf="isPosts">
+    <div class="post" *ngFor="let posts of allPosts; let i = index" >
+      <div class="post_header">
+        <img
+          src="{{ imgUrl }}{{ posts.postedBy.profilePic }}"
+          [routerLink]="['/profile/' + posts.postedBy._id]"
+          alt="Avatar"
+          class="avatar"
+          src=""
+        />
+        <h6
+          class="userName goto mt-1"
+          [routerLink]="['/profile/' + posts.postedBy._id]"
+        >
+          <b>{{ posts.postedBy.userName }}</b>
+        </h6>
+      </div>
+      <div>
+        <img
+          class="post_image"
+          src="{{ imgUrl }}{{ posts.image }}"
+          loading="lazy"
+          (dblclick)="likePost(posts, i)"
+        />
+      </div>
+      <span class="actions">
+        <span class="likes">
+          <strong>{{ posts.likes }} </strong>
+          <i
+            class="fa fa-heart"
+            [ngClass]="posts.isLiked ? 'liked' : 'nLiked' "
+            (click)="likePost(posts, i)"
+          ></i>
+        </span>
+        &nbsp;
+        <span class="comment">
+          <strong>{{ posts.comments }} </strong>
+          <i
+            style="font-size: 17px; cursor: pointer"
+            [routerLink]="['/post/' + posts._id]"
+            class="fa fa-comment"
+          >
+          </i>
+        </span>
+      </span>
+
+      <div class="captionSection" *ngIf="posts.caption">
+        <h6 class="post_text">
+          <b>{{ posts.postedBy.userName }}</b> {{ posts.caption }}
+        </h6>
+      </div>
+      <form [formGroup]="addComment">
+        <div class="commentSection">
+          <textarea
+            type="text"
+            formControlName="comment"
+            (click)="passIndex(i)"
+            class="commmentInput"
+            placeholder="Add a comment..."
+            name="caption"
+          ></textarea>
+          <h6 class="postComment" (click)="submit(posts._id , i)">
+            <button
+              [disabled]="!addComment.valid || postIndex != i"
+              type="submit"
+            >
+              Post
+            </button>
+          </h6>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

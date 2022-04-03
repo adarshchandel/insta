@@ -1,0 +1,151 @@
+
+.app_posts{
+    padding-top: 40px;
+    width:500px;
+    margin:0 auto;
+    
+}
+
+
+//posts
+.post{
+    // max-width:500px;
+    background-color: white;
+    border : 1px solid lightgray;
+    margin: 50px;
+    border-radius: 5px;
+    // display: flex;
+}
+
+.post_image{
+    width:100%;
+    object-fit: contain;
+    border-top :1px solid lightgray;
+    border-bottom :1px solid lightgray;
+}
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.post_header{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid lightgray;
+
+}
+
+.post_text{
+    padding: 20px;
+    // border-bottom: 1px solid lightgray;
+}
+.commmentInput{
+    border-top: 1px solid lightgray;
+    border: none;
+    outline: none;
+    padding: 15px 0 0 11px;
+    font-size: 15px;
+    width: 90%;
+    border-radius: 5px;
+
+}
+
+textarea {
+    resize: inherit;
+}
+.commentSection{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid lightgray;
+}
+.postComment{
+    margin-right: 10px;
+    
+    cursor: pointer;
+}
+.postComment button{
+    background:none;
+    border:none;
+    color: #9ed7fd;
+    font-weight: 600;
+
+}
+
+
+.goto{
+   cursor: pointer;
+}
+
+.actions{
+    padding:20px
+}
+
+.cmnt-avatar{
+    vertical-align: middle;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.cmnt{
+    font-weight: 600;
+}
+.comment-list {
+    height: 338px;
+    overflow: auto;
+    border-bottom: 1px solid lightgray;
+}
+.comment-input{
+    outline: none;
+    position: relative;
+}
+.cus-input{
+    width: 100%;
+    margin: 13px 0px 0px -2px;
+    height: 29px;
+    outline: none;
+    border: 1px solid lightgray;
+    border: none;
+    padding: 10px;
+}
+.post-btn{
+    position: absolute;
+    top: 0px;
+    right: 23px;
+    padding: 14px;
+    font-weight: 600;
+    color: #0c9af6;
+    cursor: pointer;
+}
+
+
+.on_reply {
+    font-size: 12px;
+    font-weight: 700;
+    color: #747171;
+    cursor: pointer;
+}
+.reply_inpt {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #959090;
+}
+
+.reply_btn {
+    font-weight: 600;
+    color: #9cabbb;
+    margin-left: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.main_comment{
+    position: relative;
+}
+.reply_list {
+    left: 23px;
+    position: relative;
+}
