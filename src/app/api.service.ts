@@ -142,5 +142,17 @@ export class ApiService {
     const headers = new HttpHeaders()
     return this.http.post(this.baseUrl+'message/convo',data,{headers:headers})
   }
+  profileWithPosts(data){
+    const headers = new HttpHeaders()
+    return this.http.post(this.baseUrl+'user/profileWithPosts',data,{headers:headers})
+  }
+  commentReply(data){
+    const headers = new HttpHeaders()
+    return this.http.post(this.baseUrl+'post/commentReply',data,{headers:headers})
+  }
+  replyList(data){
+    const headers = new HttpHeaders()
+    return this.http.post(this.baseUrl+'post/replyList',data,{headers:headers})
+  }
 }
 

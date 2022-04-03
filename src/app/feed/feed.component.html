@@ -13,8 +13,7 @@
     <h3>Create posts or follow user to see posts</h3>
   </div>
   <div class="app_posts" *ngIf="isPosts">
-    <div class="post" *ngFor="let posts of allPosts; let i = index" (scrolled)="onScroll()" infinite-scroll
-    [infiniteScrollDistance]="scrollDistance"  [infiniteScrollThrottle]="throttle">
+    <div class="post" *ngFor="let posts of allPosts; let i = index" >
       <div class="post_header">
         <img
           src="{{ imgUrl }}{{ posts.postedBy.profilePic }}"
@@ -40,22 +39,16 @@
       </div>
       <span class="actions">
         <span class="likes">
-          <strong>{{ posts.likes.length }} </strong>
+          <strong>{{ posts.likes }} </strong>
           <i
-            *ngIf="!posts.likes.includes(currentUserId)"
             class="fa fa-heart"
-            style="font-size: 16px; cursor: pointer"
-            (click)="likePost(posts, i)"
-          ></i>
-          <i
-            *ngIf="posts.likes.includes(currentUserId)"
-            class="fa fa-heart"
-            style="font-size: 16px; cursor: pointer; color: red"
+            [ngClass]="posts.isLiked ? 'liked' : 'nLiked' "
             (click)="likePost(posts, i)"
           ></i>
         </span>
         &nbsp;
         <span class="comment">
+          <strong>{{ posts.comments }} </strong>
           <i
             style="font-size: 17px; cursor: pointer"
             [routerLink]="['/post/' + posts._id]"
@@ -63,12 +56,6 @@
           >
           </i>
         </span>
-        &nbsp;
-        <!-- <span class='dislikes'>
-                 <b>{{posts.disLikes.length}} </b>
-                 <i *ngIf='!posts.disLikes.includes(currentUserId)' class="fa fa-thumbs-down" style="font-size:24px ;cursor: pointer;" (click)='dislikePost(posts)'></i>
-                 <i *ngIf='posts.disLikes.includes(currentUserId)' class="fa fa-thumbs-down" style="font-size:24px ;cursor: pointer; color:rgb(14, 110, 167)" (click)='dislikePost(posts)'></i>
-                </span> -->
       </span>
 
       <div class="captionSection" *ngIf="posts.caption">
@@ -86,7 +73,7 @@
             placeholder="Add a comment..."
             name="caption"
           ></textarea>
-          <h6 class="postComment" (click)="submit(posts._id)">
+          <h6 class="postComment" (click)="submit(posts._id , i)">
             <button
               [disabled]="!addComment.valid || postIndex != i"
               type="submit"

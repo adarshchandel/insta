@@ -6,6 +6,7 @@
             <li [routerLink]='["/feed"]' *ngIf='displayElement ' data-toggle="tooltip" data-placement="top" title="Home"><i class="fa fa-home" style="font-size:24px"></i></li>&nbsp;&nbsp;&nbsp;&nbsp;
             <li [routerLink]='["/create"]' *ngIf='displayElement ' data-toggle="tooltip" data-placement="top" title="Create"><i class="fa fa-plus-square" style="font-size:24px; "></i></li>&nbsp;&nbsp;&nbsp;&nbsp;
             <li [routerLink]='["/inbox"]' *ngIf='displayElement' data-toggle="tooltip" data-placement="top" title="Message"><i class="fa fa-commenting" style="font-size:24px"></i></li>&nbsp;&nbsp;&nbsp;&nbsp;
+            <li [routerLink]='["/notification"]'><i class="fa fa-heart" style="font-size:24px" title="Notification"></i></li>
             <li *ngIf='displayElement ' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img *ngIf='userData.profilePic' src='{{imgUrl}}{{userData.profilePic}}' style='height:30px;width:30px; border-radius:20px'>
                 <img *ngIf='!userData.profilePic' src='assets\avatar.jpg' style='height:30px;width:30px; border-radius:20px'>

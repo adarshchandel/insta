@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { interval, observable, Observable } from 'rxjs';
 import {PeerConnectOption , PeerJSOption} from  'peerjs' 
-
+  
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',

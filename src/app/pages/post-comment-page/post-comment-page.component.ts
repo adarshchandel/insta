@@ -14,10 +14,12 @@ export class PostCommentPageComponent implements OnInit {
   postData: any=[];
   loggedInUserId: string;
   postId: any;
-  commentsList:any;
+  commentsList:any=[];
   imgUrl = 'http://localhost:8000/static/';
   addComment:any
   userData: any;
+  commentArr: any=[];
+  replyComment:any
   constructor(
     private api: ApiService,
     private route :ActivatedRoute,
@@ -111,6 +113,50 @@ export class PostCommentPageComponent implements OnInit {
     })
   }
 
+  cmntInput(i){
+    this.replyComment = ''
+    if(this.commentArr.includes(i)){
+      this.commentArr = []
+    }else{
+
+      this.commentArr.splice(0,1,i)
+    }
+  }
+
+  commentReply( i , cmntId ){
+    let data = { 
+      commentId : cmntId,
+      commentedBy : this.loggedInUserId,
+      reComment : this.replyComment
+     }
+
+     console.log('data==>>',data)
+    //  return
+    this.api.commentReply(data).subscribe((res)=>{
+      if(res['success']){
+        let insertObj = {
+          _id : res['data'],
+          reComment : this.replyComment
+        }
+
+        // this.commentsList[i].reComments.unshift(insertObj)
+        this.commentsList[i].recomment++
+        this.replyComment =''
+        console.log(this.commentsList[i])
+      }
+    })
+  }
+
+  getReplies( i , cmntId){
+
+    this.api.replyList( {commentId : cmntId }).subscribe((res)=>{
+      if(res['success']){
+        this.commentsList[i].reComments.push(...res['data'])
+        console.log(this.commentsList[i])
+      }
+    })
+    
+  }
   
 
 }

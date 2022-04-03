@@ -34,8 +34,8 @@ export class FeedComponent implements OnInit {
   socket
   page: any=1;
   scrollUpDistance = 1000
-  scrollDistance =1000
-  throttle = 1000;
+  scrollDistance =100
+  throttle = 200;
   constructor(
     private api: ApiService,
     private route:ActivatedRoute,
@@ -82,7 +82,7 @@ export class FeedComponent implements OnInit {
 
   getPosts() {
     this.spineer.show()
-    this.api.getallPosts({ page : this.page , count :5 }).subscribe((res) => {
+    this.api.getallPosts({ page : this.page , count :50  , userId : this.loggedInUserId}).subscribe((res) => {
       if(res['success']==true){
         this.allPosts = res['data']
         this.isPosts=this.allPosts.length  
@@ -100,26 +100,21 @@ export class FeedComponent implements OnInit {
   likePost(post,i){
     let data ={
       postId:post._id,
-      likedBy:this.currentUserId
+      likedBy:this.currentUserId,
+      isLiked : post.isLiked ? false : true
     }
     this.spineer.show()
     this.api.likePost(data).subscribe((res)=>{
       if(res['success']==true){
-        this.spineer.hide()
-      
-        // this.getPostDetails(post._id,i)
-
-
-        //emit notification
-        let notificationData = {
-          likedBy:this.currentUserId,
-          data:'liked your post',
-          userPost:post.postedBy._id
+        this.allPosts[i].isLiked =  !post.isLiked
+        if(this.allPosts[i].isLiked){
+          this.allPosts[i].likes++
+        }else{
+          this.allPosts[i].likes--
         }
-        this.socketService.notifyUser(notificationData)
-      }if(res['success']==false){
-        this.toastr.warning(res['dat-a'])
-        this.getPosts()
+        this.spineer.hide()
+      }else{
+        this.toastr.warning(res['data'])
         this.spineer.hide()
       }
     })
@@ -155,22 +150,23 @@ export class FeedComponent implements OnInit {
   //    }
   //   })
   // }
-  submit(id){
+  submit(id , i){
     let data={
       postId:id,
       comment:this.addComment.value.comment,
       commentBy:this.loggedInUserId
     }
     this.api.commentOnPost(data).subscribe((res)=>{
-      if(res['success']=true){
+      if(res['success']==true){
         this.addComment.reset()
+        this.allPosts[i].comments++
       }
     })
   }
-  onScroll(){
-    console.log('hey')
-    this.page++
-    this.getPosts()
-  }
+  // onScroll(){
+  //   console.log('hey')
+  //   this.page++
+  //   this.getPosts()
+  // }
 
 }

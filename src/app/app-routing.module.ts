@@ -12,6 +12,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 import { PostCommentPageComponent } from './pages/post-comment-page/post-comment-page.component'
 import { AdminGuard } from '../app/admin.guard'
+import { NotificationComponent } from './notification/notification.component';
+import { TestComponent } from './test/test.component';
+
 const routes: Routes = [
 
   {
@@ -71,6 +74,16 @@ const routes: Routes = [
     path: 'post/:id',
     component: PostCommentPageComponent,
     canActivate :[AdminGuard]
+  },
+  {
+    path: 'notification',
+    component: NotificationComponent,
+    canActivate :[AdminGuard]
+  },
+  {
+    path:'test',
+    component:TestComponent,
+    
   }
 ];
 

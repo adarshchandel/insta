@@ -75,12 +75,6 @@ textarea {
 
 }
 
-.postComment button:not(:disabled){
-    background:none;
-    border:none;
-    color:#0095f6;
-    font-weight: 600;
-}
 
 .goto{
    cursor: pointer;
@@ -126,4 +120,32 @@ textarea {
     font-weight: 600;
     color: #0c9af6;
     cursor: pointer;
+}
+
+
+.on_reply {
+    font-size: 12px;
+    font-weight: 700;
+    color: #747171;
+    cursor: pointer;
+}
+.reply_inpt {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #959090;
+}
+
+.reply_btn {
+    font-weight: 600;
+    color: #9cabbb;
+    margin-left: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.main_comment{
+    position: relative;
+}
+.reply_list {
+    left: 23px;
+    position: relative;
 }

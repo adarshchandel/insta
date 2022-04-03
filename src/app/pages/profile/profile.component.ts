@@ -36,15 +36,19 @@ export class ProfileComponent implements OnInit {
   this.userID=localStorage.getItem("userId")
     this.route.params.subscribe((res)=>{
       this.profileUserId=res.id
+      this.getUser(res.id)
     })
    this.checkUser()
+   this.api.profileWithPosts({profileUser : this.profileUserId , userId : this.userID}).subscribe((res)=>{
+     console.log('res==>>',res)
+   })
   }
 
   checkUser(){
     this.userID=localStorage.getItem("userId")
     if(this.userID){
       
-    this.getUser()
+    // this.getUser()
     }else{
       this.router.navigate([''])
     }
@@ -69,13 +73,13 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  getUser() {
+  getUser(id) {
     let data={
-      id:this.profileUserId
+      id:id
     }
     this.api.getUserById(data).subscribe((res: any) => {
       this.user = res.data
-      if(  (this.profileUserId == this.userID) || this.user.followers.includes(this.userID)){
+      if(  (id == this.userID) || this.user.followers.includes(this.userID)){
         this.getUserPosts()
       }
       // console.log("user=====",this.user)
@@ -99,7 +103,7 @@ export class ProfileComponent implements OnInit {
     }
     this.api.followUser(data).subscribe((res)=>{
       if(res['success']==true){
-        this.getUser()
+        // this.getUser()
       }
      
     })
@@ -113,7 +117,7 @@ export class ProfileComponent implements OnInit {
     }
     this.api.unFollowUser(data).subscribe((res)=>{
       if(res['success']==true){
-        this.getUser()
+        // this.getUser()
       }
     })
    

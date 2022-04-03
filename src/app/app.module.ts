@@ -27,6 +27,8 @@ import {AdminGuard} from './admin.guard';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PostCommentPageComponent } from './pages/post-comment-page/post-comment-page.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { TestComponent } from './test/test.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ResetPasswordComponent,
     EditProfileComponent,
     PostCommentPageComponent,
+    TestComponent,
+    NotificationComponent,
     
    
   ],
