@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   postData: any=[];
   userPost: any;
   commentsList: any;
+  userData: any;
   constructor(
     private api: ApiService,
     private route :ActivatedRoute,
@@ -36,22 +37,10 @@ export class ProfileComponent implements OnInit {
   this.userID=localStorage.getItem("userId")
     this.route.params.subscribe((res)=>{
       this.profileUserId=res.id
-      this.getUser(res.id)
+      this.getUser()
     })
-   this.checkUser()
-   this.api.profileWithPosts({profileUser : this.profileUserId , userId : this.userID}).subscribe((res)=>{
-     console.log('res==>>',res)
-   })
-  }
 
-  checkUser(){
-    this.userID=localStorage.getItem("userId")
-    if(this.userID){
-      
-    // this.getUser()
-    }else{
-      this.router.navigate([''])
-    }
+  
   }
 
   getUserPosts() {
@@ -73,16 +62,15 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  getUser(id) {
-    let data={
-      id:id
-    }
-    this.api.getUserById(data).subscribe((res: any) => {
-      this.user = res.data
-      if(  (id == this.userID) || this.user.followers.includes(this.userID)){
-        this.getUserPosts()
+  getUser() {
+    this.api.profileWithPosts({profileUser : this.profileUserId , userId : this.userID}).subscribe((res)=>{
+      if(res['success']){
+        res['data'].isMyProfile == "false" ? 
+        res['data'].isMyProfile = false :
+        res['data'].isMyProfile= true
+        this.userData = res['data']
+        console.log('res==>>',this.userData)
       }
-      // console.log("user=====",this.user)
     })
   }
 
@@ -96,14 +84,20 @@ export class ProfileComponent implements OnInit {
       }
     })
   } 
-  followUser(){
+  followUser(follow){
     let data={
       followedUser:this.profileUserId ,
-      follower:this.userID
+      follower:this.userID,
+      isFollow : !follow
     }
     this.api.followUser(data).subscribe((res)=>{
       if(res['success']==true){
-        // this.getUser()
+        this.userData.isFollow = !follow
+        if(!follow){
+          this.userData.follower++
+        }else{
+          this.userData.follower--
+        }
       }
      
     })

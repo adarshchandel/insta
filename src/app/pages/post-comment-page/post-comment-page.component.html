@@ -34,7 +34,7 @@
         </h6>
       </div>
       <div class="comment-list p-3">
-        <div class="comment mb-3 row" *ngFor="let comments of commentsList ; let i = index">
+        <div class="comment mb-4 row" *ngFor="let comments of commentsList ; let i = index">
           <!-- <div class=" p-2 mt-1 mb-1"> -->
           <!-- <div class="col-sm-12"> -->
           <div class="col-sm-1">
@@ -53,31 +53,32 @@
               {{ comments.comment }}
             </p>
             <div class="cmnt_rply">
-              <small class="on_reply" (click)="cmntInput(i)">reply</small> &nbsp;
-              <small class="on_reply" (click)="getReplies(i ,comments._id )" *ngIf="comments.recomment">view replies ({{comments.recomment}}) </small>
+              <small class="on_reply" (click)="cmntInput(i)">reply</small> &nbsp; 
+              <small class="on_reply" (click)="getReplies(i ,comments._id , comments.replyPage)" *ngIf="comments.recomment && comments.reComments?.length < comments.recomment">---view replies ({{comments?.showRecomment ? comments?.showRecomment :  comments?.recomment}})--- </small>
+              <small class="on_reply" (click)="hideReply(i)" *ngIf="comments.recomment && comments.reComments?.length == comments.recomment">---hide replies---</small>
             </div>
             <div class="rply_inpt" *ngIf="commentArr.includes(i)">
               <input class="reply_inpt"  [(ngModel)]="replyComment">
               <span class="reply_btn" *ngIf="replyComment" (click)="commentReply(i , comments._id  )">post</span>
             </div>
-            <div class="reply_list">
-              <div *ngFor="let reCmnt of comments.reComments" class="row">
+            
+              <div *ngFor="let reCmnt of comments.reComments" class="reply_list row p-2">
                   <div class="col-sm-1">
                     <img src="{{ imgUrl }}{{ reCmnt.rplyBy.profilePic }}"
                     class="cmnt-avatar">
                   </div>
-                  <div class="col-sm-2">
-                    <p style="word-break: break-all">
+                  <div class="col-sm-3 text-center">
+                    <p style="font-weight:600;">
                       {{ reCmnt.rplyBy.userName }}
                     </p>
                   </div>
-                  <div class="col-sm-9">
+                  <div class="col-sm-8">
                     <p style="word-break: break-all" class="m-0">
                       {{ reCmnt.reComment }}
                     </p>
                   </div>
               </div>
-            </div>
+            
           </div>
           <!-- </div> -->
           <!-- </div> -->

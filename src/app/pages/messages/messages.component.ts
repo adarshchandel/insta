@@ -99,7 +99,7 @@ export class MessagesComponent implements OnInit {
   allUser() {
     this.service.MyfrindsList(this.userId).subscribe((res: any) => {
       if (res.success == true) {
-        this.userList=  res['data'].friends
+        this.userList=  res['data']
           window.scroll(0,0)
       }
     })

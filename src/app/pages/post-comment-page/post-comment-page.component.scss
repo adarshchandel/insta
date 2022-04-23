@@ -132,12 +132,14 @@ textarea {
 .reply_inpt {
     outline: none;
     border-radius: 3px;
-    border: 1px solid #959090;
+    border: 1px solid #dfd5d5;
+    width: 50%;
+    height: 32px;
 }
 
 .reply_btn {
     font-weight: 600;
-    color: #9cabbb;
+    color:#747171;;
     margin-left: 5px;
     font-size: 13px;
     cursor: pointer;
@@ -146,6 +148,6 @@ textarea {
     position: relative;
 }
 .reply_list {
-    left: 23px;
+    left: 4px;
     position: relative;
 }
