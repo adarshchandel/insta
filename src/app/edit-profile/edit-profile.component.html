@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" placeholder="email..." name="email" formControlName="email" />
+                    <input type="text" disabled='true' placeholder="email..." name="email" formControlName="email" />
                     <div *ngIf="submitted">
                         <span *ngIf="submitted && status.email.errors?.required" class="invlid-class">email is
                             required</span>

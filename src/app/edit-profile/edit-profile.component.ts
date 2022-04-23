@@ -5,7 +5,6 @@ import {ActivatedRoute,Router} from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr'
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -33,7 +32,8 @@ export class EditProfileComponent implements OnInit {
     private fb:FormBuilder,
     private route:ActivatedRoute,
     private spinner :NgxSpinnerService,
-    private toastr :ToastrService
+    private toastr :ToastrService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -131,11 +131,11 @@ base64ToFile(data, filename) {
 
       fd.append('userName',this.profileForm.value.userName)
       fd.append('email',this.profileForm.value.email)
-      if(!this.image){
+      if(this.fileToReturn){
        fd.append('profilePic',this.fileToReturn)
        // this.profileForm.value.image=this.profilePic
       }else{
-       fd.append('profilePic',this.image)
+       fd.append('profilePic',this.profilePic)
       }
       fd.append('id',this.profileUserId)
    
@@ -148,6 +148,7 @@ base64ToFile(data, filename) {
              data:res['data']
            }
           this.api.setUserData(newData)
+          this.router.navigate(['profile/'+this.profileUserId])
          }else{
            this.spinner.hide()
          }

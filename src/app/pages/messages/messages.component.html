@@ -12,13 +12,13 @@
           </div>
           <div class="message-window">
             <div class="my-chats">
-              <ul>
-                <li *ngFor="let users of userList" (click)="getChatUser(users._id)" class="users"
-                  style="cursor: pointer">
+              <ul class="m-0 p-1">
+                <li *ngFor="let users of userList" (click)="getChatUser(users._id)" class="users mt-2 mb-2">
                   <div class="d-flex">
                     <img src="{{ imgUrl + users.profilePic }}" class="myUser_img" />
                     <div class="isActive" *ngIf="users.isActive"></div>
                     <p class="mt-3">{{ users.userName | titlecase }} </p >
+                    <span *ngIf="users.unreadMsg" class="un_read">{{users.unreadMsg}}</span>
                   </div>
                 </li>
               </ul>
@@ -74,7 +74,7 @@
                   </ul>
                 </div>
                 <div class="send_box text-center">
-                  <input type="text" [(ngModel)]="message" (keyup)='showTyping($event)' class="col-sm-11 input_msg"
+                  <input type="text" [(ngModel)]="message" class="col-sm-11 input_msg"
                     placeholder="Message..." />
                   <span type="submit" (click)="SendMessage()" *ngIf="message" class="send_btn">Send</span>
                 </div>

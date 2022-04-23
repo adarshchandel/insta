@@ -15,7 +15,7 @@
 
 .my-chats li {
   list-style: none;
-  padding: 20px 0 0 0px;
+  padding: 5px 0 5px 2px;
 }
 .chat_window {
   margin: 20px 0px 20px 0px;
@@ -59,8 +59,6 @@
   // display: flex;
   // justify-content: flex-end;
   // flex-direction: column-reverse;
-
-  
 }
 #messages_cus::-webkit-scrollbar {
   display: none;
@@ -75,12 +73,12 @@
   top: 280px;
   text-align: center;
 }
-.new{
-  color:red;
+.new {
+  color: red;
   background-color: black;
 }
 
-.msg_outgoing{
+.msg_outgoing {
   padding: 7px 30px;
   border-radius: 5px 5px 0px 5px;
   list-style: none;
@@ -90,26 +88,24 @@
   letter-spacing: 0.6px;
   margin: 15px 0px 15px 0px;
   width: 70%;
-  border: 2px solid #df5e5e;
+  border: 2px solid #f2afaf;
   text-align: right;
   margin-left: 155px;
-  background: #ffafaf;
-
+  background: #ffdcdc;
 }
-.msg_outgoing::after{
+.msg_outgoing::after {
   content: "";
   position: absolute;
-  background: #e55656;
+  background: #f79b9b;
   width: 8px;
   height: 14px;
   margin-top: 30px;
   right: 15px;
   -webkit-clip-path: polygon(100% 100%, 4% 7%, 100% 0);
   clip-path: polygon(100% 100%, 0 0, 100% 0);
-
 }
 
-.msg_incomming{
+.msg_incomming {
   width: 70%;
   padding: 7px 30px;
   border-radius: 5px 5px 5px 0px;
@@ -118,14 +114,14 @@
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.6px;
-  border: 2px solid #0040ff9e;
+  border: 2px solid #8da9ff9e;
   margin: 15px 0px 15px 0px;
-  background: #7598ff;
+  background: #d3deff;
 }
-.msg_incomming::after{
+.msg_incomming::after {
   content: "";
   position: absolute;
-  background: #2d62ff;
+  background: #a9bfff;
   width: 8px;
   height: 15px;
   margin-top: 30px;
@@ -134,7 +130,7 @@
   clip-path: polygon(0 100%, 0 0, 100% 0);
 }
 
-.user_type{
+.user_type {
   padding: 0px;
   margin: 0px 4px 0px 0px;
   position: absolute;
@@ -159,7 +155,7 @@
   margin-top: 6px;
   position: absolute;
 }
-.msg_incomming small{
+.msg_incomming small {
   font-size: 10px;
   margin-top: 6px;
   right: 180px;
@@ -181,14 +177,14 @@
   margin: 14px;
 }
 
-#message-list p{
+#message-list p {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.myUser_img{
+.myUser_img {
   height: 56px;
   width: 56px;
   border-radius: 100%;
@@ -196,11 +192,29 @@
   cursor: pointer;
   padding: 2px;
 }
-.isActive{
+.isActive {
   height: 15px;
   width: 15px;
   background: #00ff37;
   border-radius: 50%;
   margin: 38px 5px 0px -28px;
   border: 3px solid white;
+}
+
+.users {
+  cursor: pointer;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  position: relative;
+}
+.un_read {
+  position: absolute;
+  right: 13px;
+  bottom: 19px;
+  background-color: lightgray;
+  padding: 2px 10px;
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  font-weight: 600;
 }
